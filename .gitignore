@@ -3,3 +3,8 @@ target
 # Eclipse
 .classpath
 .project
+.settings
+
+# Temp files
+*.swp
+*.swo
