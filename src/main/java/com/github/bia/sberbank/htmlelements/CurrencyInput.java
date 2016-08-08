@@ -12,4 +12,16 @@ public class CurrencyInput extends HtmlElement {
 	
 	@FindBy(className = "form_input_text")
 	private TextInput input;
+
+	public void setCurrency(String currency) {
+		currencySelector.selectCurrency(currency);
+	}
+
+	public void setValue(String value) {
+		input.sendKeys(value);
+	}
+
+	public String getValue() {
+		return input.getText();
+	}
 }

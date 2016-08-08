@@ -14,10 +14,30 @@ public class ConverterWidget extends HtmlElement {
 	private TextBlock dateLabel;
 
 	@FindBy(xpath = "//label[@for='from']/../div")
-	private CurrencyInput fromCurrencyInput;	
+	private CurrencyInput currencyFromInput;	
 	@FindBy(xpath = "//label[@for='to']/../div")
-	private CurrencyInput toCurrencyInput;
+	private CurrencyInput currencyToInput;
 	
 	@FindBy(className = "currency-converter-result")
 	private TextBlock converterResultText;
+
+	public void setCurrencyFrom(String currency) {
+		currencyFromInput.setCurrency(currency);	
+	}
+
+	public void setCurrencyFromValue(String value) {
+		currencyFromInput.setValue(value);		
+	}
+
+	public void setCurrencyTo(String currency) {
+		currencyToInput.setCurrency(currency);
+	}
+
+	public void setCurrencyToValue(String value) {
+		currencyToInput.setValue(value);
+	}
+
+	public String getCurrencyToValue() {
+		return currencyToInput.getValue();
+	}
 }
