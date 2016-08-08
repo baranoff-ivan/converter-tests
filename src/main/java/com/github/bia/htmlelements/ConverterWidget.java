@@ -1,4 +1,4 @@
-package com.github.bia.sberbank.htmlelements;
+package com.github.bia.htmlelements;
 
 import org.openqa.selenium.support.FindBy;
 
@@ -39,5 +39,17 @@ public class ConverterWidget extends HtmlElement {
 
 	public String getCurrencyToValue() {
 		return currencyToInput.getValue();
+	}
+
+	public String getCurrencyTo() {
+		return currencyToInput.getCurrency();
+	}
+
+	public String getCurrencyFromValue() {
+		return currencyFromInput.getValue();
+	}
+
+	public String getCurrencyFrom() {
+		return currencyFromInput.getCurrency();
 	}
 }

@@ -1,4 +1,4 @@
-package com.github.bia.sberbank.pages;
+package com.github.bia.pages;
 
 import org.openqa.selenium.WebDriver;
 

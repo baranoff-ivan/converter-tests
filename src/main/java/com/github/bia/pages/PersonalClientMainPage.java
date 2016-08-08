@@ -1,16 +1,16 @@
-package com.github.bia.sberbank.pages;
+package com.github.bia.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-import com.github.bia.sberbank.htmlelements.ConverterWidget;
+import com.github.bia.htmlelements.ConverterWidget;
 
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 public class PersonalClientMainPage extends Page {
 
-	private static final String PAGE_URL = "http://www.sberbank.ru/ru/person";
+	private static final String PAGE_URL = "https://www.sberbank.ru/ru/person";
 	
 	private ConverterWidget converter;
 	

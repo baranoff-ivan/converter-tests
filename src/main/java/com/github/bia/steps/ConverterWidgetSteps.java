@@ -1,9 +1,9 @@
-package com.github.bia.sberbank.steps;
+package com.github.bia.steps;
 
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
-import com.github.bia.sberbank.pages.PersonalClientMainPage;
+import com.github.bia.pages.PersonalClientMainPage;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -24,6 +24,9 @@ public class ConverterWidgetSteps {
 
 	@Step("Выбрать первую валюту: [{0}]")
 	public ConverterWidgetSteps selectCurrencyFrom(String currency) {
+		if (mainPage.converter().getCurrencyFrom().equals(currency)) {
+			return this;
+		}
 		mainPage.converter().setCurrencyFrom(currency);
 		return this;
 	}
@@ -36,6 +39,9 @@ public class ConverterWidgetSteps {
 
 	@Step("Выбрать вторую валюту: [{0}]")
 	public ConverterWidgetSteps selectCurrencyTo(String currency) {
+		if (mainPage.converter().getCurrencyTo().equals(currency)) {
+			return this;
+		}
 		mainPage.converter().setCurrencyTo(currency);
 		return this;
 	}
@@ -50,6 +56,13 @@ public class ConverterWidgetSteps {
 	public ConverterWidgetSteps checkIfCurrencyToValueEquals(String expectedValue) {
 		Assert.assertEquals("Incorrect CurrencyTo value:", expectedValue, 
 				mainPage.converter().getCurrencyToValue());
+		return this;
+	}
+
+	@Step("Проверить, что значение первой валюты равно [{0}]")
+	public ConverterWidgetSteps checkIfCurrencyFromValueEquals(String expectedValue) {
+		Assert.assertEquals("Incorrect CurrencyFrom value:", expectedValue, 
+				mainPage.converter().getCurrencyFromValue());
 		return this;
 	}
 }
