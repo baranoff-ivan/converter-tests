@@ -4,14 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 import com.github.bia.htmlelements.ConverterWidget;
+import com.github.bia.util.TestsProperties;
 
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
 
 public class PersonalClientMainPage extends Page {
 
-	private static final String PAGE_URL = "https://www.sberbank.ru/ru/person";
-	
 	private ConverterWidget converter;
 	
 	public PersonalClientMainPage(WebDriver driver) {
@@ -20,7 +19,7 @@ public class PersonalClientMainPage extends Page {
 	}
 
 	public static PersonalClientMainPage gotoMainPage(WebDriver driver) {
-		driver.get(PAGE_URL);
+		driver.get(TestsProperties.INSTANCE.getMainPageUrl());
 		return new PersonalClientMainPage(driver);
 	}
 

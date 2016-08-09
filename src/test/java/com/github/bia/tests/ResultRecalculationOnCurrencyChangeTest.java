@@ -11,34 +11,33 @@ import com.github.bia.TestBase;
 import com.github.bia.util.CSVParametersReader;
 
 @RunWith(Parameterized.class)
-public class ConversionToSelectedCurrencyTest extends TestBase {
+public class ResultRecalculationOnCurrencyChangeTest extends TestBase {
 	
 	@Parameters
 	public static List<String[]> data() {		
-		return CSVParametersReader.getTestParameters(ConversionToSelectedCurrencyTest.class.getSimpleName());
+		return CSVParametersReader
+				.getTestParameters(ResultRecalculationOnCurrencyChangeTest.class.getSimpleName());
 	}
 	
 	private String currencyFrom;
 	private String currencyFromValue;
 	private String currencyTo;
 	
-	private String expectedCurrencyToValue;
-	
-	public ConversionToSelectedCurrencyTest(
+	public ResultRecalculationOnCurrencyChangeTest(
 			String currencyFrom, String currencyFromValue, 
-			String currencyTo, String expectedCurrencyToValue) {
+			String currencyTo) {
 		this.currencyFrom = currencyFrom;
 		this.currencyFromValue = currencyFromValue;
 		this.currencyTo = currencyTo;
-		this.expectedCurrencyToValue = expectedCurrencyToValue;
 	}
 	
 	@Test
-	public void convertationToDefaultCurrencyTest() {
+	public void resultRecalculationOnCurrencyChangeTest() {
 		converterSteps.openMainPage()
 			.selectCurrencyFrom(currencyFrom)
 			.enterCurrencyFromValue(currencyFromValue)
-			.selectCurrencyTo(currencyTo)
-			.checkIfCurrencyToValueEquals(expectedCurrencyToValue);
+			.rememberCurrencyFromValue()
+			.selectCurrencyTo(currencyTo)			
+			.checkIfCurrencyFromValueChanged();
 	}
 }
