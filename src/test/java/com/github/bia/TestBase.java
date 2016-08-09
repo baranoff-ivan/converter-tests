@@ -43,6 +43,10 @@ public class TestBase {
 	public static void setUp() throws Exception {
 		WebDriverFactory.setDefaultHub(TestsProperties.INSTANCE.getHubUrl());
 		driver = WebDriverFactory.getDriver(TestsProperties.INSTANCE.getDesiredCapabilities());
+<<<<<<< HEAD
+=======
+		driver = new FirefoxDriver(new DesiredCapabilities());
+>>>>>>> b47dbc15e91fd2edf362b72476fe1b542a7b5c66
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		
