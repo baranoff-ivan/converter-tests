@@ -52,4 +52,8 @@ public class ConverterWidget extends HtmlElement {
 	public String getCurrencyFrom() {
 		return currencyFromInput.getCurrency();
 	}
+
+	public String getCurrecyRatio() {
+		return converterResultText.getText();
+	}
 }

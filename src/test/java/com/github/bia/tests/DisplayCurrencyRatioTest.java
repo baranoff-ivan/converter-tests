@@ -11,34 +11,31 @@ import com.github.bia.TestBase;
 import com.github.bia.util.CSVParametersReader;
 
 @RunWith(Parameterized.class)
-public class ReverseConversionTest extends TestBase {
+public class DisplayCurrencyRatioTest extends TestBase {
 	
 	@Parameters
 	public static List<String[]> data() {		
-		return CSVParametersReader.getTestParameters(ReverseConversionTest.class.getSimpleName());
+		return CSVParametersReader
+				.getTestParameters(DisplayCurrencyRatioTest.class.getSimpleName());
 	}
 	
 	private String currencyFrom;
 	private String currencyTo;
-	private String currencyToValue;
 	
-	private String expectedCurrencyFromValue;
+	private String currencyRatioPattern;
 	
-	public ReverseConversionTest(
+	public DisplayCurrencyRatioTest(
 			String currencyFrom, String currencyTo, 
-			String currencyToValue, String expectedCurrencyFromValue) {
+			String currencyRatioPattern) {
 		this.currencyFrom = currencyFrom;
 		this.currencyTo = currencyTo;
-		this.currencyToValue = currencyToValue;
-		this.expectedCurrencyFromValue = expectedCurrencyFromValue;
+		this.currencyRatioPattern = currencyRatioPattern;
 	}
-	
 	@Test
-	public void reverseConversionTest() {
+	public void displayCurrencyRatioTest() {
 		converterSteps.openMainPage()
 			.selectCurrencyFrom(currencyFrom)
 			.selectCurrencyTo(currencyTo)
-			.enterCurrencyToValue(currencyToValue)
-			.checkIfCurrencyFromValueEquals(expectedCurrencyFromValue);
+			.checkIfCurrencyRatioTextMatches(currencyRatioPattern);
 	}
 }

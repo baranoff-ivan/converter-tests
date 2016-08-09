@@ -1,0 +1,5 @@
+RUB, USD, 1 RUB = \d+.\d{4} USD
+RUB, RUB, 1 USD = \d+.\d{4} RUB
+USD, USD, 1 RUB = \d+.\d{4} USD
+EUR, EUR, 1 RUB = \d+.\d{4} EUR
+EUR, USD, 1 EUR = \d+.\d{4} USD

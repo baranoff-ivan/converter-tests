@@ -1,17 +1,21 @@
 package com.github.bia.steps;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
 import com.github.bia.pages.PersonalClientMainPage;
 
 import ru.yandex.qatools.allure.annotations.Step;
 
+import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
+
 public class ConverterWidgetSteps {
 	private WebDriver driver;
-	
+
 	private PersonalClientMainPage mainPage;
-	
+
+	private String rememberedCurrencyFromValue;
+
 	public ConverterWidgetSteps(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -45,7 +49,7 @@ public class ConverterWidgetSteps {
 		mainPage.converter().setCurrencyTo(currency);
 		return this;
 	}
-	
+
 	@Step("Ввести значение [{0}] для второй валюты")
 	public ConverterWidgetSteps enterCurrencyToValue(String value) {
 		mainPage.converter().setCurrencyToValue(value);
@@ -54,15 +58,40 @@ public class ConverterWidgetSteps {
 
 	@Step("Проверить, что значение второй валюты равно [{0}]")
 	public ConverterWidgetSteps checkIfCurrencyToValueEquals(String expectedValue) {
-		Assert.assertEquals("Incorrect CurrencyTo value:", expectedValue, 
-				mainPage.converter().getCurrencyToValue());
+		assertEquals("Некорректное значение второй валюты", expectedValue, mainPage.converter().getCurrencyToValue());
 		return this;
 	}
 
 	@Step("Проверить, что значение первой валюты равно [{0}]")
 	public ConverterWidgetSteps checkIfCurrencyFromValueEquals(String expectedValue) {
-		Assert.assertEquals("Incorrect CurrencyFrom value:", expectedValue, 
-				mainPage.converter().getCurrencyFromValue());
+		assertEquals("Некорректное значение первой валюты", expectedValue, mainPage.converter().getCurrencyFromValue());
+		return this;
+	}
+
+	@Step("Проверить, что текст соотношения между валютами соответствует шаблону [{0}]")
+	public ConverterWidgetSteps checkIfCurrencyRatioTextMatches(String pattern) {
+		assertThat("Текст соотношения между валютами не соответствует шаблону", mainPage.converter().getCurrecyRatio(),
+				matchesPattern(pattern));
+		return this;
+	}
+
+	@Step("Проверить, что значение второй валюты соответствует шаблону [{0}]")
+	public ConverterWidgetSteps checkIfCurrencyToValueMatches(String currencyToValuePattern) {
+		assertThat("Значение второй валюты не соответствует шаблону", mainPage.converter().getCurrencyToValue(),
+				matchesPattern(currencyToValuePattern));
+		return this;
+	}
+
+	@Step("Запомнить текущее значение второй валюты")
+	public ConverterWidgetSteps rememberCurrencyFromValue() {
+		rememberedCurrencyFromValue = mainPage.converter().getCurrencyToValue();
+		return this;
+	}
+
+	@Step("Проверить, что значение второй валюты изменилось")
+	public ConverterWidgetSteps checkIfCurrencyFromValueChanged() {
+		assertNotEquals("Значение второй залюты не изменилось", rememberedCurrencyFromValue, 
+				mainPage.converter().getCurrencyToValue());
 		return this;
 	}
 }
