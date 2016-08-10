@@ -10,6 +10,7 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<allure.version>1.4.11</allure.version>
 		<aspectj.version>1.8.5</aspectj.version>
 		<selenium.version>2.53.1</selenium.version>
